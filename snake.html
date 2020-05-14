@@ -13,13 +13,27 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    <div id="scoreboard">Score:<span id="score">0</span></div>
     <canvas id="gameCanvas"></canvas>
   </body>
 </html>
 <style lang="css">
+body{
+  height: 80vh;
+}
 #gameCanvas{
   border: 1px solid black;
-  margin: 15% calc(50% - 150px);
+  margin: 10% calc(50% - 150px) 0 calc(50% - 150px);
+}
+#scoreboard{
+  width: 100px;
+  height: 50px;
+  margin: auto;
+  position: absolute;
+  top: 100px;
+  color: black;
+  left: calc(50% - 50px);
+  text-align: center;
 }
 </style>
 <script>
@@ -29,7 +43,7 @@
   const c = canvas.getContext('2d');
   c.fillStyle = 'white'
 
-
+  let score = 0;
   let snake = [  {x: 150, y: 150},  {x: 140, y: 150},  {x: 130, y: 150},  {x: 120, y: 150},  {x: 110, y: 150},];
   let dx = 10;
   let dy = 0;
@@ -53,7 +67,8 @@
     snake.unshift(head);
     const didEatFood = snake[0].x === foodX && snake[0].y === foodY; 
     if (didEatFood) {    
-      createFood();  
+      score += 10;    
+      document.getElementById('score').innerHTML = score;
     } else {    
       snake.pop();  
     }
