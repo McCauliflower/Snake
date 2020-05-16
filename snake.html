@@ -16,6 +16,9 @@
     <![endif]-->
     <div id="scoreboard">Score: <span id="score">0</span></div>
     <canvas id="gameCanvas"></canvas>
+    <div style="text-align: center;">
+      <p class="reload">RELOAD</p>
+    </div>
   </body>
 </html>
 <style lang="css">
@@ -37,6 +40,21 @@ color: black;
 left: calc(50% - 50px);
 text-align: center;
 }
+.reload{
+  text-align: center;
+  border: 1px solid black;
+  transition: all 1s ease;
+  padding: 5px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px;
+  display: inline-block;
+  font-weight: lighter;
+}
+.reload:hover{
+  color: #FF0000;
+  cursor: pointer;
+}
 
 </style>
 <script>
@@ -53,7 +71,7 @@ text-align: center;
   let foodX = 0
    foodY = 0;
   let changingDirection = false;
-  
+
   function clearCanvas() {  
     c.fillStyle = "white";  c.strokeStyle = "black";
     c.fillRect(0, 0, gameCanvas.width, gameCanvas.height);  c.strokeRect(0, 0, gameCanvas.width, gameCanvas.height);
@@ -132,6 +150,7 @@ text-align: center;
   }
 
   document.addEventListener("keydown", changeDirection)
+  document.addEventListener("click", () => window.location.reload())
   drawSnake()
   createFood()
   main()
